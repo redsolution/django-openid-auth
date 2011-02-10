@@ -1,0 +1,14 @@
+<form action="{% url openid-login %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ request.path }}" />
+  <div class="openid">
+    {% for provider in openid_providers %}
+      <button
+        name="openid_identifier"
+        value="{{ provider.url }}"
+        class="openid"
+        type="submit"><img src="{{ provider.img }}" alt="{{ provider.name }} account" />
+      </button>
+    {% endfor %}
+  </div>
+</form>
